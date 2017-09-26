@@ -18,6 +18,7 @@ public class Section{
         this.name = name;
         this.maxSize = maxSize;
         Teacher current = new Teacher(teacherFirstName, teacherLastName, name);
+        sections.add(this);
     }
     public void addStudent(Student x){
             students.add(x);

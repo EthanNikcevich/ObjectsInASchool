@@ -12,7 +12,10 @@ public class Input {
             if (userText.toLowerCase().equals("create student")) {
                 System.out.println("Please enter the student's first name, last name, grade, and rounded GPA as an integer separated by commas.");
                 String newSt = school.nextLine();
-                String[] var = newSt.split(", ");
+                String[] var = newSt.split(",");
+                for (String str : var){
+                    str = str.trim();
+                }
                 if (var.length == 4) {
                     Student student = new Student(var[0], var[1], Integer.parseInt(var[2]), Integer.parseInt(var[3]));
                     System.out.println("Created an entry for " + var[0] + " " + var[1]);
@@ -24,7 +27,10 @@ public class Input {
             else if (userText.toLowerCase().equals("create teacher")) {
                 System.out.println("Please enter the teacher's first name, last name, and subject area separated by commas.");
                 String newT = school.nextLine();
-                String[] var = newT.split(", ");
+                String[] var = newT.split(",");
+                for (String str : var){
+                    str = str.trim();
+                }
                 if (var.length == 3) {
                     Teacher teacher = new Teacher(var[0], var[1], var[2]);
                     System.out.println("Created an entry for " + var[0] + " " + var[1]);
@@ -36,7 +42,10 @@ public class Input {
                  //left off here
                 System.out.println("Please enter the section/subject, maximum occupancy, and the teacher's first and last name, separated by commas.");
                 String newSe = school.nextLine();
-                String[] var = newSe.split(", ");
+                String[] var = newSe.split(",");
+                for (String str : var){
+                    str = str.trim();
+                }
                 if (var.length == 4) {
                     Section section = new Section(var[0], Integer.parseInt(var[1]), var[2], var[3]);
                     System.out.println("Created an entry for " + var[0]);
@@ -47,13 +56,18 @@ public class Input {
              else if (userText.toLowerCase().equals("add student to section")) {
                 System.out.println("Please enter the student's first and last name, followed by the section/subject, separated by commas.");
                 String addition = school.nextLine();
-                String[] var = addition.split(", ");
+                String[] var = addition.split(",");
+                for (String str : var){
+                    str = str.trim();
+                }
 
                 for (int i = 0; i < Student.studentList.size(); i++) {
-                    if (Student.studentList.get(i).firstName.equals(var[1]) && Student.studentList.get(i).lastName.equals(var[2])) {
+                    if (Student.studentList.get(i).firstName.equals(var[0]) && Student.studentList.get(i).lastName.equals(var[1])) {
                         for (int k = 0; k < Section.sections.size(); k++) {
-                            if (Section.sections.get(k).name.equals(var[3])) {
+                            if (Section.sections.get(k).name.equals(var[2])) {
+                                System.out.println("student added");
                                 Section.sections.get(k).addStudent(Student.studentList.get(i));
+                                System.out.println("student added");
                             }
                         }
                     }
@@ -62,12 +76,16 @@ public class Input {
              else if (userText.toLowerCase().equals("remove student from section")) {
                 System.out.println("Please enter the first and last name of the student and the subject you want to remove the student from, separated by commas.");
                 String removal = school.nextLine();
-                String[] var = removal.split(", ");
+                String[] var = removal.split(",");
+                for (String str : var){
+                    str = str.trim();
+                }
                 for (int i = 0; i < Student.studentList.size(); i++) {
-                    if (Student.studentList.get(i).firstName.equals(var[1]) && Student.studentList.get(i).lastName.equals(var[2])) {
+                    if (Student.studentList.get(i).firstName.equals(var[0]) && Student.studentList.get(i).lastName.equals(var[1])) {
                         for (int k = 0; k < Section.sections.size(); k++) {
-                            if (Section.sections.get(k).name.equals(var[3])) {
+                            if (Section.sections.get(k).name.equals(var[2])) {
                                 Section.sections.get(k).removeStudent(Student.studentList.get(i));
+                                System.out.println("student removed");
                             }
                         }
                     }
@@ -88,7 +106,10 @@ public class Input {
             } else if(userText.toLowerCase().equals("search student")) {
                 System.out.println("Please enter the first and last name of the student, separated by commas");
                 String studentName = school.nextLine();
-                String[] var = studentName.split(", ");
+                String[] var = studentName.split(",");
+                for (String str : var){
+                    str = str.trim();
+                }
                 for (int i = 0; i < Student.studentList.size(); i++) {
                     if (Student.studentList.get(i).firstName.equals(var[0]) && Student.studentList.get(i).lastName.equals(var[1])) {
                         System.out.println("Student found, here is the student's ID and GPA:");
@@ -104,28 +125,3 @@ public class Input {
     }
 }
 
-//            ALL OF THIS WORKS
-//
-//public class Input {
-//        public static void main(String args[]) {
-//            Student calvin = new Student("Calvin", "Hobbes", 12, 8);
-//            Student rob = new Student("Rob", "Ert", 11, 3);
-//            Student sally = new Student("Sally", "Jane", 10, 4);
-//            Teacher jones = new Teacher("Mr.", "Jones", "Math");
-//            Teacher robinson = new Teacher("Mrs.", "Robinson", "English");
-//            Section math = new Section("Math", 30, "Mr.", "jones");
-//            Section english = new Section("English", 2, "Mrs.","robinson");
-//            math.addStudent(calvin);
-//            math.addStudent(rob);
-//            english.addStudent(sally);
-//            english.addStudent(rob);
-//            english.addStudent(calvin);
-//            math.removeStudent(calvin);
-//            math.sectionSeatsRemaining();
-//            english.sectionSeatsRemaining();
-//            rob.searchStudent(rob);
-//            jones.searchTeacher(jones);
-//            math.awesome();
-//            english.awesome();
-//        }
-//}
