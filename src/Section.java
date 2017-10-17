@@ -20,9 +20,14 @@ public class Section{
         Teacher current = new Teacher(teacherFirstName, teacherLastName, name);
         sections.add(this);
     }
-    public void addStudent(Student x){
+    public void addStudent(Student x) {
+        if (currentSize < maxSize) {
             students.add(x);
             currentSize++;
+            System.out.println("student added");
+        }else{
+            System.out.println("student can't be added. The class is full.");
+        }
     }
     public void removeStudent(Student x){
         students.remove(x);

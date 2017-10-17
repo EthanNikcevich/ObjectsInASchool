@@ -65,9 +65,7 @@ public class Input {
                     if (Student.studentList.get(i).firstName.equals(var[0]) && Student.studentList.get(i).lastName.equals(var[1])) {
                         for (int k = 0; k < Section.sections.size(); k++) {
                             if (Section.sections.get(k).name.equals(var[2])) {
-                                System.out.println("student added");
                                 Section.sections.get(k).addStudent(Student.studentList.get(i));
-                                System.out.println("student added");
                             }
                         }
                     }
